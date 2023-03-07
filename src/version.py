@@ -1,13 +1,12 @@
 '''
-Archivo de versión para la librería cnowind.
+Version file for the synthetic irradiance paper.
 
-ADVERTENCIA
+WARNING
 ---
-No incluya ningún código en este archivo que no sea la definición de la variable __version__. Utilice https://semver.org/.
+Do not include any code in this file other than the definition of the __version__ variable. Use https://semver.org/.
 
-REGISTRO DE CAMBIOS
+CHANGE LOG
 ---
-0.1.0 : Versión inicial de la librería @ Diciembre 9th, 2022.
+0.1.0 : Initial release of the library @ March, 2023.
 '''
-
 __version__ = '0.1.0'

@@ -10,7 +10,6 @@ from sklearn.metrics import mean_squared_error
 # =============================================================================
 def standard_deviation_increments(data:np.array) -> float:
     '''
-    pp. 167
     '''
     delta = np.array([0 if i == 0 else abs(data[i] - data[i-1]) for i in range(len(data))])
     return  np.sqrt(np.sum((delta - np.mean(delta))**2) / (len(delta) - 1))
@@ -20,7 +19,6 @@ def standard_deviation_increments(data:np.array) -> float:
 # =============================================================================
 def stability_index(data:np.array, threshold:float=500) -> float:
     '''
-    pp. 168
     '''
     delta = np.array([0 if i == 0 else abs(data[i] - data[i-1]) for i in range(len(data))])
 
@@ -34,7 +32,6 @@ def stability_index(data:np.array, threshold:float=500) -> float:
 # =============================================================================
 def iccdf(data:np.array) -> float:
     '''
-    pp. 170
     '''
     x, y = src.utils.cdf(data=data)
 
@@ -107,10 +104,10 @@ def kullback_leibler_divergence(sample1:np.array, sample2:np.array) -> float:
 # =============================================================================
 def overlapping_coefficient(sample1:np.array, sample2:np.array, number_bins:int=100) -> float:
     '''
-    https://stats.stackexchange.com/questions/267432/coefficient-of-overlapping-ovl-for-two-distributions
-
     A value of 1 corresponds to a perfect fit between f(x) and g(x)
     and 0 valuecorresponds to totally disjointed densities.
+
+    Source: https://stats.stackexchange.com/questions/267432/coefficient-of-overlapping-ovl-for-two-distributions
     '''
     # Determine the range over which the integration will occur
     min_value = np.min((sample1.min(), sample2.min()))
