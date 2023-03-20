@@ -1,9 +1,10 @@
+import scipy
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
 # =============================================================================
-# Convierte una serie temporal a resolución horaria.
+# Cumulative density function
 # =============================================================================
 def cdf(data:np.array) -> np.array:
     # Sort data
@@ -13,6 +14,46 @@ def cdf(data:np.array) -> np.array:
     y = 1. * np.arange(len(data)) / (len(data) - 1)
 
     return np.array([x, y])
+
+# =============================================================================
+# Shapiro-Wilk normality test
+# =============================================================================
+def shapiro_wilk(data:np.array) -> float:
+    '''
+    The Shapiro-Wilk test tests the null hypothesis that
+    the data was drawn from a normal distribution.
+    '''
+    return np.round(a=scipy.stats.shapiro(x=data).pvalue, decimals=2)
+
+# =============================================================================
+# Anderson-Darling test
+# =============================================================================
+def anderson_darling(data:np.array) -> float:
+    '''
+    Anderson-Darling test for data coming from a particular
+    distribution, in this case: gaussian and logistic.
+
+    The Anderson-Darling test tests the null hypothesis
+    that a sample is drawn from a population that follows
+    a particular distribution.
+    '''
+    return int(scipy.stats.anderson(x=data, dist='norm').fit_result.success) # True - 1, False - 0
+
+# =============================================================================
+# Kolmogorov-Smirnov for lognormal test
+# =============================================================================
+def lognormal_test(data:np.array) -> float:
+    '''
+    Performs the (one-sample or two-sample) Kolmogorov-Smirnov
+    test for goodness of fit. The one-sample test compares the
+    underlying distribution F(x) of a sample against a given
+    distribution G(x).
+
+    The null hypothesis is that the two distributions are
+    identical, F(x)=G(x) for all x; the alternative is
+    that they are not identical.
+    '''
+    return np.round(a=scipy.stats.kstest(rvs=data, cdf='lognorm', args=scipy.stats.lognorm.fit(data)).pvalue, decimals=2)
 
 # =============================================================================
 # Convierte una serie temporal a resolución horaria.
