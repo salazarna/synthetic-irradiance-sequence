@@ -58,7 +58,7 @@ def lognormal_test(data:np.array) -> float:
 # =============================================================================
 # Convierte una serie temporal a resolución horaria.
 # =============================================================================
-def analysis(df:pd.DataFrame, year:int, month:int, irradiance_column:str, plot:bool) -> dict:
+def analysis(df:pd.DataFrame, year:int, month:int, irradiance_column:str, resolution:int, plot:bool) -> dict:
     '''
     irrad_analysis function performs a statistical analysis in order
     to extract max. and min. values for each data point. Also, the
@@ -77,7 +77,7 @@ def analysis(df:pd.DataFrame, year:int, month:int, irradiance_column:str, plot:b
     aux_irradiance = {'stochastic': {}, 'bootstrap': {}}
 
     # Constants
-    TIMES = [f'{i}:0{j}' if j < 10 else f'{i}:{j}' for i in range(0, 24) for j in range(0, 60, 5)]
+    TIMES = [f'{i}:0{j}' if j < 10 else f'{i}:{j}' for i in range(0, 24) for j in range(0, 60, resolution)]
 
     MONTHS = {'1': 'Jan', '2': 'Feb', '3': 'Mar', '4': 'Apr', '5': 'May', '6': 'Jun',
               '7': 'Jul', '8': 'Aug', '9': 'Sep', '10': 'Oct', '11': 'Nov', '12': 'Dec'}
@@ -99,14 +99,14 @@ def analysis(df:pd.DataFrame, year:int, month:int, irradiance_column:str, plot:b
         aux_data = data.loc[data.index.day.isin(j)]
 
         # Stochastic method data
-        aux_irradiance['stochastic'][f'sc{i+1}'] = aux_data.groupby([aux_data.index.hour, aux_data.index.minute])[irradiance_column].describe()
+        aux_irradiance['stochastic'][f'sc{i+1}'] = aux_data.groupby([aux_data.index.hour, aux_data.index.minute])[irradiance_column].describe().fillna(0)
 
         # Bootstrap method data
         aux_irradiance['bootstrap'][f'sc{i+1}'] = pd.DataFrame(aux_data[irradiance_column].values.reshape(len(aux_data.index.day.unique()), len(TIMES)), index=list(aux_data.index.day.unique()), columns=TIMES)
 
     # Statistical analysis plot
     if plot == True:
-        XTICKS = np.arange(start=0, stop=300, step=50)
+        XTICKS = np.arange(start=0, stop=len(TIMES), step=50)
         LABELS = [TIMES[i] for i in XTICKS]
 
         for i, j in enumerate([totally_covered, mostly_covered, partly_covered, mostly_clear, totally_clear]):

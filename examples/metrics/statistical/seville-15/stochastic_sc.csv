@@ -1,0 +1,6 @@
+sc,kolmogorov_smirnov,kullback_leibler_divergence,overlapping_coefficient,month
+sc1,0.36,0.15,0.43,6.5
+sc2,0.64,0.08,0.61,6.5
+sc3,0.67,0.19,0.64,6.5
+sc4,0.28,0.03,0.3,6.5
+sc5,0.6,0.3,0.64,6.5

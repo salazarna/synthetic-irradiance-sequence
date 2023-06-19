@@ -58,7 +58,7 @@ def stochastic(dictionary:dict, year:int, month:int, sky_condition:str, runs:int
 # =============================================================================
 # Bootstrap
 # =============================================================================
-def bootstrap(dictionary:dict, year:int, month:int, sky_condition:str, runs:int) -> dict:
+def bootstrap(dictionary:dict, year:int, month:int, sky_condition:str, resolution:int, runs:int) -> dict:
     '''
     '''
     # Catching exception
@@ -72,7 +72,7 @@ def bootstrap(dictionary:dict, year:int, month:int, sky_condition:str, runs:int)
     MONTHS = {'1': 'Jan', '2': 'Feb', '3': 'Mar', '4': 'Apr', '5': 'May', '6': 'Jun',
               '7': 'Jul', '8': 'Aug', '9': 'Sep', '10': 'Oct', '11': 'Nov', '12': 'Dec'}
 
-    MULTIINDEX = [(i,j) for i in range(0, 24) for j in range(0, 60, 5)]
+    MULTIINDEX = [(i,j) for i in range(0, 24) for j in range(0, 60, resolution)]
 
     #Calling the data from irrad_analysis dictionary previously created
     data = dictionary[sky_condition]
@@ -104,7 +104,7 @@ def bootstrap(dictionary:dict, year:int, month:int, sky_condition:str, runs:int)
 # =============================================================================
 # Autoregressive
 # =============================================================================
-def autoregressive(data:pd.DataFrame, irradiance_column:str, year:int, month:int, sky_condition:str, method:str, IC:float, runs:int) -> dict():
+def autoregressive(data:pd.DataFrame, irradiance_column:str, year:int, month:int, sky_condition:str, method:str, IC:float, resolution:int, runs:int) -> dict():
     '''
     '''
     # Catching exception
@@ -115,9 +115,9 @@ def autoregressive(data:pd.DataFrame, irradiance_column:str, year:int, month:int
         raise ValueError(f"An invalid method ({method}) for synthetic solar irradiance generation was selected. Select one of ['stochastic', 'bootstrap'].")
 
     # Constants
-    TIMES = [f'{i}:0{j}' if j < 10 else f'{i}:{j}' for i in range(0, 24) for j in range(0, 60, 5)]
+    TIMES = [f'{i}:0{j}' if j < 10 else f'{i}:{j}' for i in range(0, 24) for j in range(0, 60, resolution)]
 
-    MULTIINDEX = [(i,j) for i in range(0, 24) for j in range(0, 60, 5)]
+    MULTIINDEX = [(i,j) for i in range(0, 24) for j in range(0, 60, resolution)]
 
     # DataFrame filtered by date and between 6:00 to 18:00h range
     data = data.loc[(data.index.year == year) & (data.index.month == month)]
