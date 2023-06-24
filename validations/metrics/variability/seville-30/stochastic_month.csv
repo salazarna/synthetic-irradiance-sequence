@@ -1,7 +1,7 @@
 month,standard_deviation_increments,stability_index,iccdf,variability_index
 1,1.2,0.0,2.79,0.24
-2,1.42,0.0,15.59,0.27
-3,0.72,0.0,24.42,0.13
+2,1.42,0.0,6.59,0.27
+3,0.72,0.0,8.42,0.13
 4,6.37,0.0,6.4,4.47
 5,0.1,0.0,4.07,0.3
 6,2.4,0.0,0.96,0.38
@@ -10,4 +10,4 @@ month,standard_deviation_increments,stability_index,iccdf,variability_index
 9,8.81,0.0,9.52,2.51
 10,4.3,0.0,2.18,0.96
 11,8.35,0.0,6.57,1.93
-12,1.92,0.0,10.27,1.2
+12,1.92,0.0,9.27,1.2
