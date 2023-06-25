@@ -41,16 +41,18 @@ setup(
     url='https://github.com/salazarna/synthetic_irradiance',
 
     # These are the dependencies the library needs in order to run.
-    install_requires=['matplotlib==3.7.1',
+    install_requires=['folium==0.13.0',
+                      'matplotlib==3.7.1',
                       'numpy==1.24.1',
                       'pandas==1.5.3',
                       'pvlib==0.9.4',
                       'scikit_learn==1.2.1',
                       'scipy==1.10.1',
+                      'seaborn==0.12.2',
                       'statsmodels==0.13.5'],
 
     # Here are the keywords of my library.
-    keywords='irradiance', 'solar energy', 'synthetic',
+    keywords='synthetic data', 'solar radiation models', 'irradiance generation', 'stochastic modeling', 'clear-sky index', 'sky condition',
 
     # here are the packages I want "build."
     packages=find_packages(include=['src', 'src.*']),

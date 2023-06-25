@@ -1,4 +1,4 @@
-name: synt
+name: synthetic
 channels:
   - conda-forge
 dependencies:
