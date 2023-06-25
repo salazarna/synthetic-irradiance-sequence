@@ -21,6 +21,7 @@ The output of the software is a one-day synthetic solar irradiance time series w
 
 ```
 .
+|-- figs                 -- figures
 |-- src                  -- source codes
 |-- validations
 |   |-- data             -- input datasets
