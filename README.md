@@ -130,10 +130,7 @@ synthetic = src.methods.sequential(data=DF,
 
 The function will return a `pd.DataFrame` for each sky condition (i.e., fully covered, mostly covered, partially covered, mostly clear and totally clear) with a number of columns given by the `RUNS` parameters and the timestamps as an index.
 
-<img src="https://github.com/salazarna/synthetic_irradiance/blob/main/figs/fig8a.pdf" align="center" width="200" alt="sc2">
-<img src="https://github.com/salazarna/synthetic_irradiance/blob/main/figs/fig8b.pdf" align="center" width="200" alt="sc3">
-<img src="https://github.com/salazarna/synthetic_irradiance/blob/main/figs/fig8c.pdf" align="center" width="200" alt="sc4">
-<img src="https://github.com/salazarna/synthetic_irradiance/blob/main/figs/fig8d.pdf" align="center" width="200" alt="sc5">
+<img src="https://github.com/salazarna/synthetic_irradiance/blob/main/figs/results.png" align="center" width="500" alt="results">
 
 ## Citation
 
