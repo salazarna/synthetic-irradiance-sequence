@@ -102,9 +102,9 @@ def bootstrap(dictionary:dict, year:int, month:int, sky_condition:str, resolutio
     return synthetic_irradiance
 
 # =============================================================================
-# Autoregressive
+# Sequential
 # =============================================================================
-def autoregressive(data:pd.DataFrame, irradiance_column:str, year:int, month:int, sky_condition:str, method:str, IC:float, resolution:int, runs:int) -> dict():
+def sequential(data:pd.DataFrame, irradiance_column:str, year:int, month:int, sky_condition:str, method:str, IC:float, resolution:int, runs:int) -> dict():
     '''
     '''
     # Catching exception
