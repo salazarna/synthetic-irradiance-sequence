@@ -130,41 +130,10 @@ synthetic = src.methods.sequential(data=DF,
 
 The function will return a `pd.DataFrame` for each sky condition (i.e., fully covered, mostly covered, partially covered, mostly clear and totally clear) with a number of columns given by the `RUNS` parameters and the timestamps as an index.
 
-<img src="https://github.com/salazarna/synthetic_irradiance/tree/main/figs/fig8a.pdf" align="center" width="500" alt="code results for sc2">
-<img src="https://github.com/salazarna/synthetic_irradiance/tree/main/figs/fig8b.pdf" align="center" width="500" alt="code results for sc3">
-<img src="https://github.com/salazarna/synthetic_irradiance/tree/main/figs/fig8c.pdf" align="center" width="500" alt="code results for sc4">
-<img src="https://github.com/salazarna/synthetic_irradiance/tree/main/figs/fig8d.pdf" align="center" width="500" alt="code results for sc5">
-
-.grades {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-.desktopGrades {
-  box-sizing: border-box;
-  padding: 10px;
-  float: left;
-  width: 50%;
-  height: 50%;
-}
-.desktopGrades h1 {
-  border: 1px solid #ccc;
-}
-
-<div class="grades">
-  <div class="desktopGrades desktopGrades1">
-    <h1><img src="https://github.com/salazarna/synthetic_irradiance/tree/main/figs/fig8a.pdf" align="center" width="500" alt="code results for sc2"></h1>
-  </div>
-  <div class="desktopGrades desktopGrades2">
-    <h1><img src="https://github.com/salazarna/synthetic_irradiance/tree/main/figs/fig8b.pdf" align="center" width="500" alt="code results for sc3"></h1>
-  </div>
-  <div class="desktopGrades desktopGrades3">
-    <h1><img src="https://github.com/salazarna/synthetic_irradiance/tree/main/figs/fig8c.pdf" align="center" width="500" alt="code results for sc4"></h1>
-  </div>
-  <div class="desktopGrades desktopGrades4">
-    <h1><img src="https://github.com/salazarna/synthetic_irradiance/tree/main/figs/fig8d.pdf" align="center" width="500" alt="code results for sc5"></h1>
-  </div>
-</div>
+<img src="https://github.com/salazarna/synthetic_irradiance/blob/main/figs/fig8a.pdf" align="center" width="200" alt="sc2">
+<img src="https://github.com/salazarna/synthetic_irradiance/blob/main/figs/fig8b.pdf" align="center" width="200" alt="sc3">
+<img src="https://github.com/salazarna/synthetic_irradiance/blob/main/figs/fig8c.pdf" align="center" width="200" alt="sc4">
+<img src="https://github.com/salazarna/synthetic_irradiance/blob/main/figs/fig8d.pdf" align="center" width="200" alt="sc5">
 
 ## Citation
 
