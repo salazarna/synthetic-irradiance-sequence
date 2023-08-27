@@ -128,7 +128,7 @@ synthetic = src.methods.sequential(data=DF,
                                    month=MONTH,
                                    sky_condition=SC,
                                    method=METHOD,
-                                   IC=IC,
+                                   confidence_interval=IC,
                                    resolution=RESOLUTION,
                                    runs=RUNS)
 ```

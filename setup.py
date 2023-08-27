@@ -1,5 +1,4 @@
-from setuptools import setup
-from setuptools import find_packages
+from setuptools import find_packages, setup
 
 # Load the README file.
 with open(file='README.md', mode='r') as readme_handle:
@@ -7,7 +6,7 @@ with open(file='README.md', mode='r') as readme_handle:
 
 # Load the __version__ script.
 with open('./src/version.py', mode='r') as f:
-    exec(f.read())
+    __version__ = exec(f.read())
 
 setup(
     # Define the library name, this is what is used along with `pip install`.
@@ -52,7 +51,7 @@ setup(
                       'statsmodels==0.13.5'],
 
     # Here are the keywords of my library.
-    keywords='synthetic data', 'solar radiation models', 'irradiance generation', 'stochastic modeling', 'clear-sky index', 'sky condition',
+    keywords=['synthetic data', 'solar radiation models', 'irradiance generation', 'stochastic modeling', 'clear-sky index', 'sky condition'],
 
     # here are the packages I want "build."
     packages=find_packages(include=['src', 'src.*']),

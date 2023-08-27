@@ -1,6 +1,8 @@
-import scipy
 import numpy as np
 import pandas as pd
+import pvlib
+import scipy
+
 
 # =============================================================================
 # Stochastic
@@ -102,9 +104,40 @@ def bootstrap(dictionary:dict, year:int, month:int, sky_condition:str, resolutio
     return synthetic_irradiance
 
 # =============================================================================
+# Clear sky index (kc)
+# =============================================================================
+def clear_sky_index(data:pd.DataFrame(), column:str, longitude:float, latitude:float, altitude:float, time_zone:str) -> pd.DataFrame():
+    '''
+    '''
+    # Location
+    location = pvlib.location.Location(latitude, longitude, time_zone, altitude)
+
+    # Clear-sky irradiance (Hcs)
+    RESOLUTION = int(pd.Series(data.index.values).diff().median().total_seconds()/60)
+
+    # Clear-sky irradiance (Hcs)
+    hcs = location.get_clearsky(times=pd.date_range(start=data.index[0],end=data.index[-1], freq=f'{RESOLUTION}min', tz=time_zone),
+                                model='ineichen')
+
+    # Append clear-sky irradiance to main dataframe
+    data['ics_wm2'] = hcs['ghi'].values
+
+    # Clear-sky index (kc) to main dataframe
+    data['kc'] = data[column].values / data['ics_wm2'].values
+
+    # NaN
+    data['kc'] = data['kc'].fillna(1)
+
+    # Replace kc > 1
+    data.loc[data['kc'] > 1, 'kc'] = 1
+
+    return data
+
+# =============================================================================
 # Sequential
 # =============================================================================
-def sequential(data:pd.DataFrame, irradiance_column:str, year:int, month:int, sky_condition:str, method:str, IC:float, resolution:int, runs:int) -> dict():
+def sequential(data:pd.DataFrame, irradiance_column:str, year:int, month:int, sky_condition:str,
+               method:str, confidence_interval:float, runs:int) -> pd.DataFrame():
     '''
     '''
     # Catching exception
@@ -115,14 +148,13 @@ def sequential(data:pd.DataFrame, irradiance_column:str, year:int, month:int, sk
         raise ValueError(f"An invalid method ({method}) for synthetic solar irradiance generation was selected. Select one of ['stochastic', 'bootstrap'].")
 
     # Constants
-    TIMES = [f'{i}:0{j}' if j < 10 else f'{i}:{j}' for i in range(0, 24) for j in range(0, 60, resolution)]
-
-    MULTIINDEX = [(i,j) for i in range(0, 24) for j in range(0, 60, resolution)]
+    RESOLUTION = int(pd.Series(data.index.values).diff().median().total_seconds()/60)
+    TIMES = [f'{i}:0{j}' if j < 10 else f'{i}:{j}' for i in range(0, 24) for j in range(0, 60, RESOLUTION)]
+    MULTIINDEX = [(i,j) for i in range(0, 24) for j in range(0, 60, RESOLUTION)]
 
     # DataFrame filtered by date and between 6:00 to 18:00h range
     data = data.loc[(data.index.year == year) & (data.index.month == month)]
 
-    #if data.empty == False:
     # Median value of clear-sky index (kc)
     median_kc = data['kc'].loc[(data.index.hour >= 6) & (data.index.hour < 18)].resample(rule='1d').median()
 
@@ -154,7 +186,7 @@ def sequential(data:pd.DataFrame, irradiance_column:str, year:int, month:int, sk
         temp_aux_data = pd.DataFrame(aux_data.values.reshape(len(aux_data.index.day.unique()), len(TIMES)), index=list(aux_data.index.day.unique()), columns=TIMES)
 
         if temp_aux_data.empty != True:
-            ALPHA = 1 - IC
+            ALPHA = 1 - confidence_interval
 
             # DataFrame to store all the synthetic irradiance before store at dictionary
             df = pd.DataFrame()
@@ -181,7 +213,7 @@ def sequential(data:pd.DataFrame, irradiance_column:str, year:int, month:int, sk
                         # STEP 2. Confidence interval
                         N = len(temp)
 
-                        z = scipy.stats.norm.ppf(IC+(ALPHA/2)) # Gaussian
+                        z = scipy.stats.norm.ppf(confidence_interval+(ALPHA/2)) # Gaussian
                         std = np.std(temp[TIMES[i-1]], ddof=0) # Population
 
                         upper_bound = synt[i-1] + (z * std / np.sqrt(N))
