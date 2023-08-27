@@ -4,14 +4,14 @@
 
 This software uses an `stochastic` and `bootstrap` method to generate one-day synthetic solar irradiance data at a minimum 60-minute time resolution.
 
-The software required to define eight parameters to execute:
+The software requires to define eight parameters to execute:
 
 1. `DF`: Input dataset that contains the measured solar irradiance. Must be a `pd.Dataframe`.
-2. `COL`: Column of the pd.DataFrame of the solar irradiance (input data).
+2. `COL`: Column of the `pd.DataFrame` of the solar irradiance (input data).
 3. `YEAR`: Year of study. Must exist in the input dataset.
 4. `MONTH`: Month of study (1 to 12). Must exist in the input dataset.
-5. `SC`: Sky condition of study. Must be 'sc1', 'sc2', 'sc3', 'sc4' or 'sc5'. Corresponds to fully covered, mostly covered, partially covered, mostly clear and totally clear, respectively.
-6. `METHOD`: Method to generate the synthetic data. Must be 'stochastic' or 'bootstrap'.
+5. `SC`: Sky condition of study. Must be `'sc1'`, `'sc2'`, `'sc3'`, `'sc4'` or `'sc5'`. Corresponds to fully covered, mostly covered, partially covered, mostly clear and totally clear, respectively.
+6. `METHOD`: Method to generate the synthetic data. Must be `'stochastic'` or `'bootstrap'`.
 7. `IC`: Confidence interval. Must be a value between 0 and 1. The suggested value is 0.95.
 8. `RUNS`: Quantity of one-day synthetic sequences to generate.
 
@@ -21,20 +21,20 @@ The output of the software is a one-day synthetic solar irradiance time series w
 
 ```
 .
-|-- figs                 -- figures
-|-- src                  -- source codes
+|-- figs                   -- figures
+|-- src                    -- source codes
 |-- validations
-|   |-- data             -- input datasets
-|   |-- distributions    -- goodness of fit assessment
+|   |-- data               -- input datasets
+|   |-- distributions      -- goodness of fit assessment
 |   |-- metrics
-|       |-- energy       -- energy production validation
-|       |-- statistical  -- goodness of fit validation
-|       |-- variability  -- dynamic behavior validation
-|   |-- notebooks        -- validations for each input dataset
-|-- environment.yml      -- python environment creation
-|-- notebook.ipynb       -- jupyter notebook for execution
-|-- requirements.txt     -- dependencies
-`-- setup.py             -- python library configuration
+|       |-- energy         -- energy production validation
+|       |-- statistical    -- goodness of fit validation
+|       |-- variability    -- dynamic behavior validation
+|   |-- notebooks          -- validations for each input dataset
+|-- environment.yml        -- python environment creation
+|-- tutorial.ipynb         -- jupyter notebook tutorial for execution
+|-- requirements.txt       -- dependencies
+`-- setup.py               -- python library configuration
 ```
 
 ## Instalation
@@ -42,7 +42,7 @@ The output of the software is a one-day synthetic solar irradiance time series w
 A specific python environment called `synthetic` will be created to run the methods and the necessary packages will be installed. For this, open the terminal and from the `(base)` environment move to the directory where you have downloaded the folder of this repository. For instance, if you have downloaded the folder to your desktop:
 
 ```terminal
-cd C:\user\Desktop\synthetic_irradiance
+cd /user/Desktop/synthetic_irradiance
 ```
 
 Then, create the environment with the command:
@@ -85,7 +85,7 @@ jupyter kernelspec remove synthetic
 
 ## Basic Usage
 
-In the root folder of the repository, the `notebook.ipynb` file contains the description for the basic usage of the code. This same file is suggested to be used as a template to generate the synthetic data. It is just needed to adaptate the input parameters.
+In the root folder of the repository, the `tutorial.ipynb` file contains the description for the basic usage of the code. This same file is suggested to be used as a template to generate the synthetic data. It is just needed to adaptate the input parameters.
 
 An example of the code pipeline is:
 
