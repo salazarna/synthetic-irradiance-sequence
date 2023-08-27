@@ -1,4 +1,4 @@
-# Synthetic Solar Irradiance Sequences
+# One-day Synthetic Solar Irradiance Sequences
 
 ## Introduction
 
@@ -32,9 +32,9 @@ The output of the software is a one-day synthetic solar irradiance time series w
 |       |-- variability    -- dynamic behavior validation
 |   |-- notebooks          -- validations for each input dataset
 |-- environment.yml        -- python environment creation
-|-- tutorial.ipynb         -- jupyter notebook tutorial for execution
 |-- requirements.txt       -- dependencies
-`-- setup.py               -- python library configuration
+|-- setup.py               -- python library configuration
+`-- tutorial.ipynb         -- jupyter notebook tutorial for execution
 ```
 
 ## Instalation
@@ -99,18 +99,22 @@ import pandas as pd
 First, upload the input dataset.
 
 ```python
-df = pd.read_csv(filepath_or_buffer=f'./validations/data/bogota-5.csv', sep=',', decimal='.', index_col='timestamp', parse_dates=True)
+df = pd.read_csv(filepath_or_buffer='./validations/data/bogota-5.csv',
+                 sep=',',
+                 decimal='.',
+                 index_col='timestamp',
+                 parse_dates=True)
 ```
 
 Next, define the input parameters.
 
 ```python
 DF = df
-COL = 'poa_wm2'
+COL = 'ghi_wm2'
 YEAR = 2023
 MONTH = 1
 SC = 'sc5'
-METHOD = 'stochastic'
+METHOD = 'bootstrap'
 IC = 0.95
 RUNS = 5
 ```
@@ -129,7 +133,7 @@ synthetic = src.methods.sequential(data=DF,
                                    runs=RUNS)
 ```
 
-The function will return a `pd.DataFrame` for each sky condition (i.e., fully covered, mostly covered, partially covered, mostly clear and totally clear) with a number of columns given by the `RUNS` parameters and the timestamps as an index.
+The function will return a `pd.DataFrame` for the specified sky condition (i.e., fully covered, mostly covered, partially covered, mostly clear or totally clear) with a number of columns given by the `RUNS` parameters and the timestamps as an index.
 
 <img src="https://github.com/salazarna/synthetic_irradiance/blob/main/figs/results.png" align="center" width="1000" alt="results">
 
