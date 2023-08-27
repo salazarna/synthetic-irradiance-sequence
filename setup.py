@@ -10,7 +10,7 @@ with open('./src/version.py', mode='r') as f:
 
 setup(
     # Define the library name, this is what is used along with `pip install`.
-    name = 'synt',
+    name = 'synthetic',
 
     # Define the author of the repository.
     author = 'Nelson A. Salazar Peña',
@@ -27,7 +27,8 @@ setup(
 
     # Here is a small description of the library. This appears
     # when someone searches for the library on https://pypi.org/search.
-    description='',
+    description='This software uses an stochastic and bootstrap method to generate one-day \
+                 synthetic solar irradiance data at a minimum 60-minute time resolution.',
 
     # I have a long description but that will just be my README
     # file, note the variable up above where I read the file.
