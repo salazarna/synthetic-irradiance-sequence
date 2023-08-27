@@ -13,10 +13,10 @@ setup(
     name = 'synthetic',
 
     # Define the author of the repository.
-    author = 'Nelson A. Salazar Peña',
+    author = ['Nelson Salazar-Peña', 'Alejandra Tabares', 'Andrés González-Mancera'],
 
     # Define the Author's email, so people know who to reach out to.
-    author_email = 'na.salazar10@uniandes.edu.co',
+    author_email = ['na.salazar10@uniandes.edu.co', 'a.tabaresp@uniandes.edu.co', 'angonzal@uniandes.edu.co'],
 
     # Define the version of this library.
     # Read this as
