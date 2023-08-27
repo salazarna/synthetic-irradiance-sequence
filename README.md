@@ -1,4 +1,4 @@
-# One-day Synthetic Solar Irradiance Sequences
+# Synthetic Solar Irradiance Sequences
 
 ## Introduction
 
