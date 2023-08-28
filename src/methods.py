@@ -214,7 +214,7 @@ def sequential(data:pd.DataFrame, irradiance_column:str, year:int, month:int, sk
                         N = len(temp)
 
                         z = scipy.stats.norm.ppf(confidence_interval+(ALPHA/2)) # Gaussian
-                        std = np.std(temp[TIMES[i-1]], ddof=0) # Population
+                        std = np.std(temp[TIMES[i-1]], ddof=1) # Sample
 
                         upper_bound = synt[i-1] + (z * std / np.sqrt(N))
                         lower_bound = synt[i-1] - (z * std / np.sqrt(N))
