@@ -25,7 +25,7 @@ def stochastic(dictionary:dict, year:int, month:int, sky_condition:str, runs:int
     data = dictionary[sky_condition]
 
     if data.empty == True:
-        print('There is no information related to the date {MONTHS[str(month)]}-{year} {sky_condition}.')
+        print(f'There is no information related to the date {MONTHS[str(month)]}-{year} {sky_condition}.')
 
     else:
         # DataFrame to store all the synthetic irradiance before store at dictionary
