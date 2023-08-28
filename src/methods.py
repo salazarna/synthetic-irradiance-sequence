@@ -104,9 +104,9 @@ def bootstrap(dictionary:dict, year:int, month:int, sky_condition:str, resolutio
     return synthetic_irradiance
 
 # =============================================================================
-# Clear sky index (kc)
+# Clear-sky index (kc)
 # =============================================================================
-def clear_sky_index(data:pd.DataFrame(), column:str, longitude:float, latitude:float, altitude:float, time_zone:str) -> pd.DataFrame():
+def clear_sky_index(data:pd.DataFrame, column:str, longitude:float, latitude:float, altitude:float, time_zone:str) -> pd.DataFrame:
     '''
     '''
     # Location
@@ -137,7 +137,7 @@ def clear_sky_index(data:pd.DataFrame(), column:str, longitude:float, latitude:f
 # Sequential
 # =============================================================================
 def sequential(data:pd.DataFrame, irradiance_column:str, year:int, month:int, sky_condition:str,
-               method:str, confidence_interval:float, runs:int) -> pd.DataFrame():
+               method:str, confidence_interval:float, runs:int) -> pd.DataFrame:
     '''
     '''
     # Catching exception
