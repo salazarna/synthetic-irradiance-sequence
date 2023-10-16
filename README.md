@@ -141,7 +141,7 @@ The function will return a `pd.DataFrame` for the specified sky condition (i.e.,
 
 The original paper describing the methods implemented is:
 ```
-Salazar-Peña, N., Tabares, A., Gonzalez-Mancera, A., 2023. Sequential stochastic and bootstrap methods to generate synthetic solar irradiance time series of high temporal resolution based on historical observations. Solar Energy, Vol. 264. URL: https://www.sciencedirect.com/science/article/pii/S0038092X23006643, doi: https://doi.org/10.1016/j.solener.2023.112030.
+Salazar-Peña, N., Tabares, A., Gonzalez-Mancera, A., 2023. Sequential stochastic and bootstrap methods to generate synthetic solar irradiance time series of high temporal resolution based on historical observations. Solar Energy, Vol. 264, 112030. URL: https://www.sciencedirect.com/science/article/pii/S0038092X23006643, doi: https://doi.org/10.1016/j.solener.2023.112030.
 ```
 The BibTex entry:
 ```
@@ -149,7 +149,7 @@ The BibTex entry:
 title = "Sequential stochastic and bootstrap methods to generate synthetic solar irradiance time series of high temporal resolution based on historical observations",
 journal = "Solar Energy",
 volume = "264",
-pages = "XXXX-XXXX",
+pages = "112030",
 year = "2023",
 issn = "0038-092X",
 doi = "https://doi.org/10.1016/j.solener.2023.112030",
